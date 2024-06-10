@@ -3,6 +3,7 @@ const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const adminRoute = require("./routes/admin");
+const threadRoute = require("./routes/stock");
 
 const app = express();
 
@@ -16,11 +17,8 @@ app.use(cors());
 
 // routes
 
-app.get("/", (req, res) => {
-  res.send("home page 2");
-});
-
 app.use("/api/admin", adminRoute);
+app.use("/api/thread", threadRoute);
 
 // DB connection
 mongoose
