@@ -32,5 +32,26 @@ const getThreadController = async (req, res) => {
     console.log(err);
   }
 };
+const delThreadController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deleted = await threadModel.findByIdAndDelete(id);
+    if (deleted) {
+      return res.status(200).json({
+        success: true,
+        message: "Thread deleted",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err?.message,
+    });
+  }
+};
 
-module.exports = { addThreadController, getThreadController };
+module.exports = {
+  addThreadController,
+  getThreadController,
+  delThreadController,
+};
