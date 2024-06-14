@@ -83,4 +83,19 @@ const loginController = async (req, res) => {
   }
 };
 
-module.exports = { registerController, loginController };
+// all admins
+
+const getAdmins = async (req, res) => {
+  try {
+    const admins = await adminModel.find();
+    if (admins) {
+      return res
+        .status(200)
+        .json({ success: true, message: "All admins", admins });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+module.exports = { registerController, loginController, getAdmins };

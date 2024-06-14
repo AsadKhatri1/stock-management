@@ -2,6 +2,7 @@ const express = require("express");
 const {
   registerController,
   loginController,
+  getAdmins,
 } = require("../controllers/adminController");
 const { requireSignIn } = require("../middlewares/auth");
 const router = express.Router();
@@ -10,5 +11,6 @@ const router = express.Router();
 
 router.post("/register", registerController);
 router.post("/login", loginController);
+router.get("/getAdmins", getAdmins);
 
 module.exports = router;

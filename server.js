@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const adminRoute = require("./routes/admin");
 const threadRoute = require("./routes/stock");
+const fabricRoute = require("./routes/fabric");
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use("/api/admin", adminRoute);
 app.use("/api/thread", threadRoute);
+app.use("/api/fabric", fabricRoute);
 
 // DB connection
 mongoose

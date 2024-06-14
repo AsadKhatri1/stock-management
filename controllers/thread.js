@@ -49,9 +49,32 @@ const delThreadController = async (req, res) => {
     });
   }
 };
+const updateThreadController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { Quantity } = req.body;
+    const updated = await threadModel.findByIdAndUpdate(
+      id,
+      { Quantity },
+      { new: true }
+    );
+    if (updated) {
+      return res.status(200).json({
+        success: true,
+        message: "Thread updated",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err?.message,
+    });
+  }
+};
 
 module.exports = {
   addThreadController,
   getThreadController,
   delThreadController,
+  updateThreadController,
 };
